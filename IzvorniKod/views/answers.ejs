@@ -1,0 +1,90 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./styles/index.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="refresh" content="10;url=/leaderboard" />
+</head>
+
+<body class="primary-font">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md bordered-header">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <br>
+                    <br>
+                </li>
+        </div>
+    </nav>
+    <main>
+        <section>
+            <div class="container-fluid centered-grid bolder-text">
+                <div class="row empty-row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4 centered-elements">
+                        <label class="btn btn-outline-primary form-check-label" id="question-label">
+                            <%= questionText %>
+                        </label>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+                <div class="row empty-row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                        <form>
+                            <div class="btn-group answers centered-text" data-toggle="buttons">
+                                <% for (let i=0 ; i<roomPopulation.length; i++){%>
+                                    <h3 class="white-text"><%= roomPopulation[i].firstname %>:</h3>
+                                <br>
+                                <% var thisUserAnswers = answers[roomPopulationUsernames[i].username] %>
+                                <% for (let j=0 ; j<thisUserAnswers.length; j++){%>
+                                    <button type="submit" class="btn btn-danger"><%= thisUserAnswers[j] %></button>
+                                    <br>
+                                <% } %>
+                                <br>
+                                <% } %>
+
+                            </div>
+                        </form>
+                        <div class="col-md-4">
+                        </div>
+                    </div>
+                    <div class="row empty-row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+    <footer>
+        <nav class="navbar navbar-expand-md navbar-dark primary-font">
+    </footer>
+</body>
+
+</html>

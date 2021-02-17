@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./styles/index.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body class="primary-font">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md bordered-header">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <br>
+                    <br>
+                </li>
+        </div>
+    </nav>
+    <main>
+        <section>
+            <div class="container-fluid centered-grid bolder">
+                <div class="row empty-row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6 bolder-text centered-elements">
+                        <form class="centered-grid">
+                            <div class="form-group">
+                                <input type="text" class="form-control " id="currentUsername" readonly name="currentUsername"
+                                    value=<%= user.firstname %>>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+                <div class="row empty-row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6 bolder-text centered-elements">
+                        <ul id="userTable">
+                            <% for (let i=0 ; i<currentRoomPopulation.length - 1 ; i++){%>
+                            <li><%= currentRoomPopulation[i].firstname %></li>
+                            <br>
+                            <% } %>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6  centered-elements">
+                        <button type="submit" class="btn btn-success" id="startGameButton">Start</button>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        var socket = io.connect('https://f-game.herokuapp.com/')
+        var userTable = document.getElementById('userTable')
+        var currentFirstname = document.getElementById('currentUsername').value
+        socket.emit('roomUsers', {
+            roomUsers: currentFirstname
+        });
+
+        socket.on('roomUsers', function(data) {
+            userTable.innerHTML += '<li>' + data.roomUsers + '</li><br>'
+        })
+
+        var startGameButton = document.getElementById('startGameButton')
+        startGameButton.addEventListener('click', function() {
+            socket.emit('startGame', {})
+        })
+
+        socket.on('startGame', function(destination) {
+            window.location.href = destination
+        })
+    </script>
+
+    <footer>
+        <nav class="navbar navbar-expand-md navbar-dark primary-font">
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./styles/index.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body class="primary-font">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md bordered-header">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <br>
+                    <br>
+                </li>
+        </div>
+    </nav>
+    <main>
+        <section>
+            <div class="container-fluid centered-container">
+                <div class="row empty-row">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="row centered-text bolder-text">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6">
+                        Wait for all answers
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+                <div class="row centered-text bolder-text">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="loading-icon"><div></div></div>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        var socket = io.connect('https://f-game.herokuapp.com/')
+        socket.on('everyoneAnswered', function(destination) {
+            window.location.href = destination
+        })
+    </script>
+
+    <footer>
+        <nav class="navbar navbar-expand-md navbar-dark primary-font">
+    </footer>
+</body>
+
+</html>
